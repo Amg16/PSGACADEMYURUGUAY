@@ -2,6 +2,8 @@
 
 Este documento describe **cada archivo** que el equipo de diseño / filmmaker debe producir para llenar la landing page. Las rutas y nombres son **obligatorios**: respetarlos hace que todo encaje sin tocar el código.
 
+> ⚡ El sitio ahora usa una **paleta Dark Premium** (azul noche `#020617`). Los assets deben pensarse sobre fondo oscuro: contrastes altos, saturación contenida, look cinemático tipo "día de partido".
+
 ---
 
 ## 📂 Estructura de carpetas
@@ -23,15 +25,13 @@ assets/
 | Dimensiones    | **1920 × 1080 px** mín. (3840 × 2160 px recomendado)  |
 | Proporción     | **16:9**                                              |
 | Duración       | 12 – 20 segundos, **bucle perfecto** (loop seamless)  |
-| Codec MP4      | H.264, CRF 23, AAC silencio (audio será muteado)      |
+| Codec MP4      | H.264, CRF 23, AAC silencio                           |
 | Codec WebM     | VP9, calidad media                                     |
 | Peso máximo    | 8 MB MP4 · 6 MB WebM                                  |
-| Contenido      | Slow-motion deportivo: entrenamiento, regate, remate, celebración. Tono cinemático, look azulado/desaturado |
-| Notas          | El video se cubre con overlay azul al 60%. Evitar texto incrustado. Acción centrada (los bordes pueden recortarse en mobile) |
+| Contenido      | Slow-motion deportivo: entrenamiento, regate, remate, celebración. Look cinemático azulado/desaturado |
+| Notas          | El video lleva un overlay azul noche al 70%. Acción centrada (los bordes se recortan en mobile). El CSS aplica `brightness(0.7)` y `contrast(1.15)` |
 
 ### `images/hero-poster.jpg`
-Poster fallback que se muestra mientras el video carga (o si falla).
-
 | Propiedad   | Valor               |
 |-------------|---------------------|
 | Dimensiones | 1920 × 1080 px      |
@@ -46,18 +46,18 @@ Poster fallback que se muestra mientras el video carga (o si falla).
 
 | Archivo                                  | Tamaño     | Proporción | Notas                                          |
 |------------------------------------------|------------|------------|------------------------------------------------|
-| `images/favicon.svg`                     | 64 × 64    | 1:1        | Versión simplificada del escudo                |
-| `images/logo-psg-academy.svg`            | 180 × 60   | 3:1        | Versión blanca (header sobre hero oscuro)      |
-| `images/logo-psg-academy-white.svg`      | 200 × 200  | 1:1        | Versión grande para preloader                  |
+| `images/favicon.svg`                     | 64 × 64    | 1:1        | Escudo simplificado                            |
+| `images/logo-psg-academy.svg`            | 180 × 60   | 3:1        | Versión blanca (header sobre dark)             |
+| `images/logo-psg-academy-white.svg`      | 200 × 200  | 1:1        | Grande para el preloader                       |
 | `images/logo-psg-academy-footer.svg`     | 240 × 80   | 3:1        | Monocromática blanca para footer               |
 
 ### Sección "The PSG Way" (Metodología)
 
 | Archivo                       | Tamaño        | Proporción | Contenido sugerido                              |
 |-------------------------------|---------------|------------|--------------------------------------------------|
-| `images/metodologia-main.webp`| 1200 × 1500   | 4:5        | Foto cenital de entrenamiento o sesión técnica con coaches. Tono editorial. Retina: 2400×3000 |
+| `images/metodologia-main.webp`| 1200 × 1500   | 4:5        | Foto cenital de entrenamiento o sesión técnica. Tono editorial dramático. Retina: 2400×3000 |
 
-### Sedes Oficiales (Sección 3)
+### Sedes Oficiales
 
 | Archivo                       | Tamaño      | Proporción | Contenido sugerido                          |
 |-------------------------------|-------------|------------|----------------------------------------------|
@@ -65,8 +65,7 @@ Poster fallback que se muestra mientras el video carga (o si falla).
 | `images/sede-pocitos.webp`    | 800 × 1000  | 4:5        | Vista urbana / entrenamiento en complejo     |
 | `images/sede-punta.webp`      | 800 × 1000  | 4:5        | Cancha al aire libre, ambiente costero       |
 
-> **Peso máximo recomendado:** 200 KB cada una en WebP (calidad 82, compresión sharp).
-> Retina: duplicar dimensiones y servir con `srcset` (puede hacerse en una segunda iteración).
+> **Peso máximo recomendado:** 200 KB cada una en WebP (calidad 82).
 
 ### Sección Inscripción (background opcional)
 
@@ -76,7 +75,7 @@ Poster fallback que se muestra mientras el video carga (o si falla).
 
 ### Sponsors / Patrocinadores institucionales
 
-4 logos monocromáticos (blanco o gris claro) sobre fondo navy.
+4 logos monocromáticos blancos sobre fondo dark.
 
 | Archivos                                | Tamaño cada uno | Proporción |
 |-----------------------------------------|-----------------|------------|
@@ -84,28 +83,41 @@ Poster fallback que se muestra mientras el video carga (o si falla).
 
 ---
 
-## 🎯 LOTTIE (animaciones opcionales)
-
-Si el equipo de After Effects quiere agregar animaciones vectoriales (loaders, micro-interacciones, iconos animados), pueden colocarlas en:
+## 🎯 LOTTIE (opcional)
 
 ```
 assets/lottie/
-├── trophy-spin.json        (200×200 px · loop infinito)
-├── ball-bounce.json        (200×200 px · loop infinito)
-└── arrow-down.json         (40×60 px · loop infinito)
+├── trophy-spin.json        (200×200 px · loop)
+├── ball-bounce.json        (200×200 px · loop)
+└── arrow-down.json         (40×60 px · loop)
 ```
-
-> Para integrarlas, agregar `<script src="https://cdn.jsdelivr.net/npm/lottie-web/build/player/lottie.min.js"></script>` y crear un contenedor `<div class="lottie-container" data-src="assets/lottie/X.json"></div>`. (Se puede preparar el wiring si lo solicitan.)
 
 ---
 
 ## 📐 Convenciones generales
 
-- **Formato preferido:** WebP (foto) y SVG (vectorial). PNG sólo si hay transparencia compleja.
+- **Formato preferido:** WebP (foto) y SVG (vectorial). PNG sólo con transparencia compleja.
 - **Compresión:** Squoosh.app o ImageOptim antes de subir.
-- **Nomenclatura:** todo en minúsculas, sin espacios, separadores con guion (`-`).
 - **Color management:** sRGB para web.
-- **Look & feel:** azul cinemático profundo (#001C3F), contrastes altos, sombras profundas. Tomar como referencia visual `psg.fr` y `psgacademy.com.br`.
+- **Look & feel:** azul noche profundo, contrastes altos, sombras dramáticas. Estética "día de partido nocturno".
+
+---
+
+## 🌐 Match Center (API integration)
+
+La sección Match Center carga datos de **api-football.com** (API-Sports) en tiempo real. Para activarla:
+
+1. Crea cuenta gratuita en [https://dashboard.api-football.com/register](https://dashboard.api-football.com/register).
+2. Copia tu API Key del dashboard.
+3. Abre `index.html` y pega la key en la constante:
+
+```js
+const API_KEY = 'TU_API_KEY_AQUÍ';
+```
+
+4. El tier gratuito permite 100 requests/día — suficiente para esta integración.
+
+> Si la `API_KEY` está vacía, la sección muestra un estado **fallback** estético sin romper el layout.
 
 ---
 
@@ -117,10 +129,7 @@ assets/lottie/
 - [ ] 3 imágenes de sedes (4:5)
 - [ ] Background inscripción (opcional, 16:9)
 - [ ] 4 logos sponsors (3:1)
+- [ ] API Key de api-football.com pegada en `index.html`
 - [ ] (Opcional) Lottie files
 
-Una vez cargados todos los archivos en sus rutas correctas, la landing page se verá pixel-perfect sin modificar el código.
-
----
-
-**Contacto del developer:** para dudas técnicas o integración de nuevos assets, contactar al equipo de desarrollo antes de subir.
+Una vez cargados todos los archivos, la landing page se verá pixel-perfect sin tocar código.

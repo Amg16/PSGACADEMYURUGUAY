@@ -2,31 +2,26 @@
    PSG ACADEMY URUGUAY · MAIN JS
    ───────────────────────────────────────────────────────────────────
    Stack:  GSAP 3.12 + ScrollTrigger + Lenis (smooth scroll)
-   Author: Lead Creative Developer
+   Maneja:  preloader, smooth scroll, cursor, scroll progress, header,
+            mobile menu, reveal animations, parallax, counters,
+            magnetic buttons, form handler.
    ═══════════════════════════════════════════════════════════════════ */
 
 (() => {
   'use strict';
 
-  /* Registrar plugins GSAP */
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  /* Detección de preferencias de movimiento reducido */
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ─────────────────────────────────────────────────────────────
-     1. PRELOADER · animación inicial
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── PRELOADER ─────────────────────────────────────────────── */
   const initPreloader = () => {
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
-
-    // Activar la barra
     requestAnimationFrame(() => preloader.classList.add('loading'));
 
-    // Ocultar después de 1.6s y disparar la entrada del hero
     window.addEventListener('load', () => {
       setTimeout(() => {
         preloader.classList.add('hidden');
@@ -34,7 +29,6 @@
       }, 1600);
     });
 
-    // Fallback si load no se dispara
     setTimeout(() => {
       if (!preloader.classList.contains('hidden')) {
         preloader.classList.add('hidden');
@@ -43,9 +37,7 @@
     }, 3500);
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     2. SMOOTH SCROLL · Lenis
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── SMOOTH SCROLL (Lenis) ─────────────────────────────────── */
   let lenis = null;
   const initSmoothScroll = () => {
     if (REDUCED_MOTION || typeof Lenis === 'undefined') return;
@@ -64,12 +56,10 @@
     }
     requestAnimationFrame(raf);
 
-    // Sincronizar Lenis con ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    // Anchors funcionan con scroll suave
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
@@ -78,7 +68,6 @@
           if (target) {
             e.preventDefault();
             lenis.scrollTo(target, { offset: -60, duration: 1.6 });
-            // Cierra menú mobile si está abierto
             document.getElementById('mobile-menu')?.classList.remove('open');
           }
         }
@@ -86,9 +75,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     3. CUSTOM CURSOR
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── CUSTOM CURSOR ─────────────────────────────────────────── */
   const initCustomCursor = () => {
     const dot  = document.querySelector('.cursor-dot');
     const ring = document.querySelector('.cursor-ring');
@@ -111,16 +98,20 @@
     };
     render();
 
-    // Hover states
-    document.querySelectorAll('a, button, .venue-card, .program-card').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
+    /* Delegated hover detector (incluye tarjetas inyectadas por la API) */
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a, button, .venue-card, .program-card, .fixture-card')) {
+        ring.classList.add('cursor-hover');
+      }
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a, button, .venue-card, .program-card, .fixture-card')) {
+        ring.classList.remove('cursor-hover');
+      }
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     4. PROGRESS BAR · indicador de scroll
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── SCROLL PROGRESS ──────────────────────────────────────── */
   const initScrollProgress = () => {
     const bar = document.querySelector('.scroll-progress');
     if (!bar) return;
@@ -133,9 +124,7 @@
     update();
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     5. HEADER · cambio de estado al hacer scroll
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── HEADER SCROLL ────────────────────────────────────────── */
   const initHeaderScroll = () => {
     const header = document.getElementById('main-header');
     if (!header) return;
@@ -147,39 +136,28 @@
     handler();
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     6. MOBILE MENU
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── MOBILE MENU ──────────────────────────────────────────── */
   const initMobileMenu = () => {
     const toggle = document.getElementById('mobile-toggle');
     const menu   = document.getElementById('mobile-menu');
     const close  = document.getElementById('mobile-close');
     if (!toggle || !menu) return;
-
     toggle.addEventListener('click', () => menu.classList.add('open'));
     close?.addEventListener('click', () => menu.classList.remove('open'));
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     7. HERO · animación de entrada (texto por líneas + fade)
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── HERO ENTRANCE ────────────────────────────────────────── */
   const animateHeroEntrance = () => {
     if (REDUCED_MOTION) return;
-
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
     tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8, delay: 0.2 })
-      .to('.hero-line .inline-block', {
-        y: 0,
-        duration: 1.2,
-        stagger: 0.12,
-      }, '-=0.5')
-      .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-      .to('.hero-ctas', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-      .to('.hero-scroll', { opacity: 1, duration: 0.6 }, '-=0.3')
-      .to('.hero-stats', { opacity: 1, duration: 0.6 }, '-=0.4');
+      .to('.hero-line .inline-block', { y: 0, duration: 1.2, stagger: 0.12 }, '-=0.5')
+      .to('.hero-sub',   { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+      .to('.hero-ctas',  { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+      .to('.hero-scroll',{ opacity: 1, duration: 0.6 }, '-=0.3');
 
-    // Parallax suave del video del hero
+    /* Parallax suave del video del hero */
     gsap.to('.hero-video', {
       yPercent: 20,
       ease: 'none',
@@ -192,16 +170,13 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     8. REVEAL ON SCROLL · texto por líneas + fade up
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── SCROLL REVEALS ───────────────────────────────────────── */
   const initScrollReveals = () => {
     if (REDUCED_MOTION) {
       gsap.set('.reveal-up, .reveal-line .inline-block', { opacity: 1, y: 0, clearProps: 'all' });
       return;
     }
 
-    /* Texto por líneas en cada sección */
     document.querySelectorAll('.reveal-headline').forEach(heading => {
       const lines = heading.querySelectorAll('.reveal-line .inline-block');
       if (!lines.length) return;
@@ -219,7 +194,6 @@
       });
     });
 
-    /* Fade-up genérico */
     document.querySelectorAll('.reveal-up').forEach(el => {
       const delay = parseFloat(el.dataset.delay) || 0;
       gsap.to(el, {
@@ -237,9 +211,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     9. PARALLAX FRAMES (imágenes con desplazamiento suave)
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── PARALLAX ─────────────────────────────────────────────── */
   const initParallax = () => {
     if (REDUCED_MOTION) return;
 
@@ -261,9 +233,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     10. COUNTERS · animación de números
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── COUNTERS ─────────────────────────────────────────────── */
   const initCounters = () => {
     document.querySelectorAll('.counter').forEach(el => {
       const target = parseInt(el.dataset.target, 10) || 0;
@@ -288,9 +258,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     11. MAGNETIC BUTTONS · hover magnético elegante
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── MAGNETIC BUTTONS ─────────────────────────────────────── */
   const initMagneticButtons = () => {
     if (REDUCED_MOTION || window.matchMedia('(hover: none)').matches) return;
 
@@ -321,9 +289,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     12. FORM HANDLER · validación y envío demo
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── FORM HANDLER ─────────────────────────────────────────── */
   const initForm = () => {
     const form = document.getElementById('signup-form');
     if (!form) return;
@@ -331,20 +297,18 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Validación nativa
       if (!form.checkValidity()) {
         form.reportValidity();
         gsap.fromTo(form, { x: -8 }, { x: 0, duration: 0.4, ease: 'elastic.out(1, 0.3)' });
         return;
       }
 
-      // Animación de envío
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = '<span>Enviando…</span>';
       btn.disabled = true;
 
-      // Aquí integrar con backend / Formspree / Netlify Forms
+      /* TODO: integrar con backend / Formspree / Netlify Forms */
       setTimeout(() => {
         btn.innerHTML = '<span>¡Inscripción enviada!</span>';
         btn.style.background = '#16a34a';
@@ -358,9 +322,7 @@
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────
-     INIT
-  ───────────────────────────────────────────────────────────────── */
+  /* ─── INIT ─────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
     initSmoothScroll();
@@ -375,7 +337,6 @@
     initForm();
   });
 
-  // Refresh ScrollTrigger al cargar todo
   window.addEventListener('load', () => {
     if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
   });

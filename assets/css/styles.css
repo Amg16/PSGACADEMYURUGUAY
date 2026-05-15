@@ -1,55 +1,85 @@
 /* ═══════════════════════════════════════════════════════════════════
-   PSG ACADEMY URUGUAY · CUSTOM STYLES
+   PSG ACADEMY URUGUAY · DARK PREMIUM SPORT EDITION
    ───────────────────────────────────────────────────────────────────
    Stack:  Tailwind CDN + GSAP + Lenis
-   Author: Lead Creative Developer
+   Theme:  Dark / Glassmorphism / Match-Day Aggression
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── VARIABLES GLOBALES ─────────────────────────────────────────── */
 :root {
+  --psg-night:      #020617;   /* Azul noche profundo (background base) */
+  --psg-night-soft: #0A1428;   /* Variante para alternar secciones */
   --psg-navy:       #001C3F;
   --psg-navy-deep:  #000C1F;
   --psg-red:        #EF3340;
   --psg-red-deep:   #C8242F;
   --psg-gold:       #C8A96A;
   --psg-light:      #F3F4F6;
+
+  --glass-bg:       rgba(255, 255, 255, 0.04);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border:   rgba(255, 255, 255, 0.10);
+
   --ease-cinematic: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-smooth:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* ── RESET / BASE ──────────────────────────────────────────────── */
 * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
 html, body { margin: 0; padding: 0; }
 
 body {
   font-family: 'Public Sans', system-ui, sans-serif;
-  background: #ffffff;
-  color: var(--psg-navy);
+  background: var(--psg-night);
+  color: #ffffff;
   overflow-x: hidden;
 }
 
-/* Selection */
 ::selection { background: var(--psg-red); color: #fff; }
 ::-moz-selection { background: var(--psg-red); color: #fff; }
 
-/* Scrollbar minimalista */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--psg-navy); border-radius: 0; }
+::-webkit-scrollbar-track { background: var(--psg-night); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--psg-red); }
 
-/* ── TIPOGRAFÍA UTILITY ────────────────────────────────────────── */
-.font-headline { font-family: 'Archivo Black', Impact, sans-serif; letter-spacing: -0.03em; text-transform: uppercase; }
-.font-body     { font-family: 'Public Sans', system-ui, sans-serif; }
-.tracking-psg  { letter-spacing: -0.03em; }
+/* ── TIPOGRAFÍA ────────────────────────────────────────────────── */
+.font-headline {
+  font-family: 'Archivo Black', Impact, sans-serif;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-weight: 900;
+  /* "Match-day weight": stroke sutil para reforzar peso visual */
+  -webkit-text-stroke: 0.5px currentColor;
+}
+.font-body { font-family: 'Public Sans', system-ui, sans-serif; }
+.tracking-psg { letter-spacing: -0.03em; }
 
-/* Itálicas dramáticas para acentos */
-.font-headline.italic, em.font-headline { font-style: italic; font-weight: 400; transform: skewX(-6deg); display: inline-block; }
 h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6deg); }
 
 /* ═══════════════════════════════════════════════════════════════════
-   CUSTOM CURSOR (desktop only)
+   GLASSMORPHISM CARDS — fundamentales para el sistema visual
+   ═════════════════════════════════════════════════════════════════ */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  transition: background 0.5s ease, border-color 0.5s ease, transform 0.5s var(--ease-smooth);
+}
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Variante sin blur (más liviana, para grids densos) */
+.glass-card-flat {
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.5s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CUSTOM CURSOR
    ═════════════════════════════════════════════════════════════════ */
 .cursor-dot, .cursor-ring {
   position: fixed;
@@ -77,7 +107,7 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PROGRESS BAR de scroll
+   PROGRESS BAR & PRELOADER
    ═════════════════════════════════════════════════════════════════ */
 .scroll-progress {
   position: fixed;
@@ -87,11 +117,9 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   background: var(--psg-red);
   z-index: 80;
   transition: width 0.1s linear;
+  box-shadow: 0 0 12px rgba(239, 51, 64, 0.6);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   PRELOADER
-   ═════════════════════════════════════════════════════════════════ */
 #preloader {
   transition: opacity 0.8s var(--ease-cinematic), visibility 0.8s;
 }
@@ -105,9 +133,7 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   transition: width 1.4s var(--ease-cinematic);
 }
 #preloader.loading .preloader-bar-fill { width: 100%; }
-.preloader-logo {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
+.preloader-logo { animation: pulse-soft 2s ease-in-out infinite; }
 @keyframes pulse-soft {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50%      { opacity: 1;   transform: scale(1.05); }
@@ -117,14 +143,13 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
    HEADER · NAV
    ═════════════════════════════════════════════════════════════════ */
 #main-header.scrolled {
-  background: rgba(0, 28, 63, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 #main-header.scrolled nav { padding-top: 14px; padding-bottom: 14px; }
 
-/* Nav link underline animado */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -136,7 +161,6 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
 }
 .nav-link:hover::after { width: 100%; }
 
-/* Mobile menu */
 #mobile-menu.open { transform: translateX(0); }
 .mobile-link {
   transition: color 0.3s, transform 0.5s var(--ease-cinematic);
@@ -155,20 +179,17 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
 .mobile-link:hover { color: var(--psg-red); }
 
 /* ═══════════════════════════════════════════════════════════════════
-   HERO · CINEMATOGRAFÍA
+   HERO
    ═════════════════════════════════════════════════════════════════ */
 .hero-video {
-  filter: brightness(0.85) contrast(1.08) saturate(1.1);
+  filter: brightness(0.7) contrast(1.15) saturate(1.05);
 }
-
-/* Texto del hero — preparación de la animación de líneas */
 .hero-line .inline-block {
   transform: translateY(110%);
   display: inline-block;
   will-change: transform;
 }
 
-/* Grano sutil */
 .grain-overlay {
   background-image:
     radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
@@ -179,17 +200,32 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   mix-blend-mode: overlay;
 }
 
-/* Línea decorativa scroll */
-.scroll-line {
-  animation: scroll-pulse 2s ease-in-out infinite;
-}
+.scroll-line { animation: scroll-pulse 2s ease-in-out infinite; }
 @keyframes scroll-pulse {
   0%   { transform: translateY(-100%); }
   100% { transform: translateY(200%); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   NÚMEROS DECORATIVOS DE SECCIÓN
+   MATCH CENTER · FIXTURE CARDS
+   ═════════════════════════════════════════════════════════════════ */
+.fixture-card {
+  cursor: pointer;
+  transition: transform 0.5s var(--ease-smooth),
+              background 0.5s ease,
+              border-color 0.5s ease,
+              box-shadow 0.5s ease;
+}
+.fixture-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(239, 51, 64, 0.4);
+  box-shadow: 0 20px 50px -20px rgba(239, 51, 64, 0.25);
+}
+.fixture-skeleton { min-height: 200px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION NUMBERS DECORATIVOS
    ═════════════════════════════════════════════════════════════════ */
 .section-number {
   position: absolute;
@@ -199,12 +235,12 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   font-size: clamp(8rem, 18vw, 20rem);
   letter-spacing: -0.05em;
   line-height: 0.85;
-  color: var(--psg-navy);
-  opacity: 0.04;
+  color: #ffffff;
+  opacity: 0.025;
   pointer-events: none;
   z-index: 0;
+  font-weight: 900;
 }
-.section-number-light { color: #fff; opacity: 0.05; }
 
 @media (max-width: 1024px) {
   .section-number { top: 3rem; right: 1.5rem; font-size: 8rem; }
@@ -225,33 +261,37 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   MAGNETIC BUTTON (general)
+   MAGNETIC BUTTON
    ═════════════════════════════════════════════════════════════════ */
 .btn-magnetic {
   position: relative;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
   will-change: transform;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PARALLAX FRAME (sección metodología)
+   PARALLAX FRAME
    ═════════════════════════════════════════════════════════════════ */
 .parallax-frame { position: relative; }
 .parallax-img { will-change: transform; }
 
 /* ═══════════════════════════════════════════════════════════════════
-   COUNTER ANIMATION (estado inicial)
+   COUNTER
    ═════════════════════════════════════════════════════════════════ */
 .counter { display: inline-block; }
 
 /* ═══════════════════════════════════════════════════════════════════
-   VENUE CARDS (sedes)
+   VENUE CARDS
    ═════════════════════════════════════════════════════════════════ */
 .venue-card {
-  transition: transform 0.5s var(--ease-smooth);
+  transition: transform 0.5s var(--ease-smooth),
+              border-color 0.5s ease,
+              box-shadow 0.5s ease;
 }
 .venue-card:hover {
   transform: translateY(-8px);
+  border-color: rgba(239, 51, 64, 0.3);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 .venue-img { will-change: transform; }
 
@@ -266,7 +306,7 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(239, 51, 64, 0.05));
+  background: linear-gradient(135deg, transparent, rgba(239, 51, 64, 0.08));
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
@@ -277,19 +317,28 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
    PLAN CARDS · PRICING
    ═════════════════════════════════════════════════════════════════ */
 .plan-card {
-  transition: transform 0.6s var(--ease-smooth), box-shadow 0.6s ease;
+  transition: transform 0.6s var(--ease-smooth),
+              border-color 0.5s ease,
+              box-shadow 0.6s ease;
 }
 .plan-card:not(.plan-card-featured):hover {
   transform: translateY(-8px);
-  border-color: var(--psg-navy);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Efecto de brillo en el plan destacado */
+/* Plan destacado con bordes brillantes */
 .plan-card-featured {
+  background: linear-gradient(180deg, rgba(239, 51, 64, 0.08) 0%, rgba(2, 6, 23, 0.85) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--psg-red);
+  box-shadow:
+    0 0 0 1px rgba(239, 51, 64, 0.15),
+    0 30px 60px -20px rgba(239, 51, 64, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .plan-shine {
-  background: linear-gradient(135deg, transparent 40%, rgba(239, 51, 64, 0.15) 50%, transparent 60%);
+  background: linear-gradient(135deg, transparent 40%, rgba(239, 51, 64, 0.20) 50%, transparent 60%);
   background-size: 200% 200%;
   background-position: 100% 100%;
   transition: background-position 1.2s var(--ease-smooth);
@@ -299,17 +348,15 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   FORMULARIO · FOCUS STATES PREMIUM
+   FORMULARIO · FOCUS STATES
    ═════════════════════════════════════════════════════════════════ */
-.form-field {
-  position: relative;
-}
+.form-field { position: relative; }
 .form-field label {
   display: block;
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
   margin-bottom: 12px;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -320,7 +367,7 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 8px 0 12px;
   font-family: 'Public Sans', sans-serif;
   font-size: 16px;
@@ -345,13 +392,12 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   cursor: pointer;
 }
 .form-field select option {
-  background: var(--psg-navy);
+  background: var(--psg-night);
   color: #fff;
 }
 
 .form-field textarea { resize: vertical; min-height: 80px; }
 
-/* Línea animada bajo el input al focus */
 .form-field::after {
   content: '';
   position: absolute;
@@ -371,8 +417,11 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: all 0.3s ease;
 }
 .social-icon:hover {
@@ -385,7 +434,6 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
    RESPONSIVE FINETUNING
    ═════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-stats { display: none !important; }
   .hero-scroll { display: none; }
 }
 
@@ -393,6 +441,9 @@ h1 span.inline-block.italic, h2 span.inline-block.italic { transform: skewX(-6de
   .plan-card-featured {
     transform: scale(1) !important;
     margin-top: 0 !important;
+  }
+  #match-center {
+    margin-top: 2rem;
   }
 }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#001C3F" />
+  <meta name="theme-color" content="#020617" />
   <title>PSG Academy Uruguay — Entrena como los campeones</title>
   <meta name="description" content="La academia oficial del Paris Saint-Germain en Uruguay. Formación de élite para atletas de 4 a 19 años bajo la metodología del club francés." />
 
@@ -23,20 +23,22 @@
   <!-- ── Tailwind CSS (CDN) ── -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- ── Tailwind config: paleta PSG + tipografías ── -->
+  <!-- ── Tailwind config: paleta PSG DARK + tipografías ── -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             psg: {
-              navy:    '#001C3F',
-              'navy-deep': '#000C1F',
-              red:     '#EF3340',
+              night:      '#020617',  // Azul noche profundo (nuevo background base)
+              'night-soft': '#0A1428',
+              navy:       '#001C3F',
+              'navy-deep':'#000C1F',
+              red:        '#EF3340',
               'red-deep': '#C8242F',
-              gold:    '#C8A96A',
-              light:   '#F3F4F6',
-              steel:   '#6B7280',
+              gold:       '#C8A96A',
+              light:      '#F3F4F6',
+              steel:      '#6B7280',
             }
           },
           fontFamily: {
@@ -55,64 +57,56 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
-<body class="bg-white text-psg-navy font-body antialiased overflow-x-hidden">
+<body class="bg-psg-night text-white font-body antialiased overflow-x-hidden">
 
-  <!-- ════════════════════════════════════════════════════════════════
-       CUSTOM CURSOR (desktop only)
-  ═════════════════════════════════════════════════════════════════ -->
+  <!-- Custom cursor (desktop) -->
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       PROGRESS BAR — indicador de scroll cinemático
-  ═════════════════════════════════════════════════════════════════ -->
+  <!-- Scroll progress -->
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ════════════════════════════════════════════════════════════════
-       PRELOADER — overlay inicial con logo
+       PRELOADER
   ═════════════════════════════════════════════════════════════════ -->
-  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-psg-navy">
+  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-psg-night">
     <div class="text-center">
       <!--
         PRELOADER LOGO
         ─────────────────────────────────────────────
         Archivo: /assets/images/logo-psg-academy-white.svg
         Tamaño: 200x200px  |  Proporción: 1:1
-        Formato sugerido: SVG (Illustrator export)
       -->
-      <div class="preloader-logo w-32 h-32 mx-auto mb-6 bg-slate-200/10 rounded-sm"></div>
-      <div class="preloader-bar w-48 h-[2px] mx-auto bg-white/20 overflow-hidden">
+      <div class="preloader-logo w-32 h-32 mx-auto mb-6 bg-white/5 rounded-sm border border-white/10"></div>
+      <div class="preloader-bar w-48 h-[2px] mx-auto bg-white/10 overflow-hidden">
         <div class="preloader-bar-fill h-full bg-psg-red"></div>
       </div>
-      <p class="mt-6 text-white/70 text-xs tracking-[0.4em] uppercase font-medium">Paris Saint-Germain Academy</p>
+      <p class="mt-6 text-white/50 text-xs tracking-[0.4em] uppercase font-medium">Paris Saint-Germain Academy</p>
     </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════════
-       HEADER / NAV — fixed, transparente sobre hero, sólido al scroll
+       HEADER / NAV
   ═════════════════════════════════════════════════════════════════ -->
   <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
     <nav class="max-w-[1600px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
 
-      <!-- Logo -->
       <a href="#hero" class="flex items-center gap-3 group" aria-label="PSG Academy Uruguay – Inicio">
         <!--
           LOGO PSG ACADEMY URUGUAY
           ─────────────────────────────────────────────
           Archivo: /assets/images/logo-psg-academy.svg
           Tamaño: 180x60px  |  Proporción: 3:1
-          Versión blanca para fondos oscuros; el CSS la conmuta cuando el header pasa a estado "scrolled"
         -->
-        <div class="logo-placeholder w-12 h-12 bg-slate-200/10 backdrop-blur-sm rounded-sm flex items-center justify-center border border-white/20">
+        <div class="logo-placeholder w-12 h-12 bg-white/5 backdrop-blur-md rounded-sm flex items-center justify-center border border-white/10">
           <span class="text-white text-[10px] font-headline tracking-psg">PSG</span>
         </div>
         <div class="hidden md:block leading-tight">
           <span class="block text-white text-[11px] tracking-[0.3em] uppercase font-semibold">Academy</span>
-          <span class="block text-white/60 text-[10px] tracking-[0.4em] uppercase">Uruguay</span>
+          <span class="block text-white/50 text-[10px] tracking-[0.4em] uppercase">Uruguay</span>
         </div>
       </a>
 
-      <!-- Nav links (desktop) -->
       <ul class="hidden lg:flex items-center gap-10 text-[12px] tracking-[0.2em] uppercase font-semibold text-white">
         <li><a href="#metodologia" class="nav-link relative py-2">Metodología</a></li>
         <li><a href="#sedes"        class="nav-link relative py-2">Sedes</a></li>
@@ -121,16 +115,14 @@
         <li><a href="#inscripcion"  class="nav-link relative py-2">Contacto</a></li>
       </ul>
 
-      <!-- CTA + idioma -->
       <div class="flex items-center gap-4">
-        <button class="hidden md:inline-flex items-center gap-1 text-white/70 hover:text-white text-[11px] tracking-[0.3em] uppercase transition" aria-label="Cambiar idioma">
+        <button class="hidden md:inline-flex items-center gap-1 text-white/60 hover:text-white text-[11px] tracking-[0.3em] uppercase transition" aria-label="Cambiar idioma">
           ES <span class="text-white/30">/</span> <span class="text-white/30">EN</span>
         </button>
         <a href="#inscripcion" class="btn-magnetic hidden md:inline-flex items-center gap-2 bg-psg-red hover:bg-psg-red-deep text-white px-6 py-3 text-[11px] tracking-[0.25em] uppercase font-bold transition-colors">
           Inscríbete
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <!-- Mobile menu trigger -->
         <button id="mobile-toggle" class="lg:hidden text-white p-2" aria-label="Abrir menú">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
@@ -138,10 +130,8 @@
     </nav>
   </header>
 
-  <!-- ════════════════════════════════════════════════════════════════
-       MOBILE MENU — overlay fullscreen
-  ═════════════════════════════════════════════════════════════════ -->
-  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-psg-navy-deep translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]">
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-psg-night translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]">
     <div class="h-full flex flex-col">
       <div class="flex justify-end p-6">
         <button id="mobile-close" class="text-white p-2" aria-label="Cerrar menú">
@@ -155,7 +145,7 @@
         <li><a href="#membresias"   class="mobile-link block text-white font-headline text-4xl tracking-psg uppercase">Membresías</a></li>
         <li><a href="#inscripcion"  class="mobile-link block text-psg-red font-headline text-4xl tracking-psg uppercase">Inscríbete</a></li>
       </ul>
-      <div class="px-10 pb-10 text-white/40 text-[11px] tracking-[0.3em] uppercase">
+      <div class="px-10 pb-10 text-white/30 text-[11px] tracking-[0.3em] uppercase">
         Ici c'est Paris — Aquí es Uruguay
       </div>
     </div>
@@ -164,99 +154,126 @@
   <!-- ════════════════════════════════════════════════════════════════
        1 · HERO CINEMATOGRÁFICO
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="hero" class="relative h-screen min-h-[700px] w-full overflow-hidden bg-psg-navy">
+  <section id="hero" class="relative min-h-screen w-full overflow-hidden bg-psg-night">
 
-    <!-- VIDEO DE FONDO -->
     <div class="absolute inset-0 z-0">
       <!--
         VIDEO HERO BACKGROUND
         ─────────────────────────────────────────────────────────
         Archivo:  /assets/videos/hero-bg.mp4   (+ /assets/videos/hero-bg.webm)
-        Tamaño:   1920x1080px (mínimo) — 3840x2160px (recomendado para retina)
+        Tamaño:   1920x1080px (mín.) — 3840x2160px (retina)
         Proporción: 16:9
         Duración: 12–20s en bucle perfecto
-        Contenido sugerido: slow-motion de entrenamientos, pase, remate
-        Peso máximo recomendado: 8MB MP4 (H.264, CRF 23)
-        Poster fallback: /assets/images/hero-poster.jpg (1920x1080px)
+        Peso máx: 8MB MP4 (H.264 CRF 23)
+        Poster:   /assets/images/hero-poster.jpg (1920x1080px)
       -->
       <video
         class="hero-video w-full h-full object-cover scale-105"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
+        autoplay muted loop playsinline preload="metadata"
         poster="assets/images/hero-poster.jpg">
         <source src="assets/videos/hero-bg.webm" type="video/webm" />
         <source src="assets/videos/hero-bg.mp4"  type="video/mp4"  />
       </video>
     </div>
 
-    <!-- Overlay degradado cinemático -->
-    <div class="absolute inset-0 z-10 bg-gradient-to-b from-psg-navy/40 via-psg-navy/60 to-psg-navy"></div>
-    <div class="absolute inset-0 z-10 bg-gradient-to-r from-psg-navy/70 via-transparent to-transparent"></div>
-
-    <!-- Grano sutil sobre el video -->
+    <!-- Overlay dark dramático -->
+    <div class="absolute inset-0 z-10 bg-gradient-to-b from-psg-night/50 via-psg-night/70 to-psg-night"></div>
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-psg-night/80 via-transparent to-transparent"></div>
     <div class="absolute inset-0 z-10 grain-overlay pointer-events-none"></div>
 
-    <!-- Contenido -->
-    <div class="relative z-20 h-full max-w-[1600px] mx-auto px-6 lg:px-12 flex flex-col justify-end pb-24 lg:pb-32">
+    <div class="relative z-20 min-h-screen max-w-[1600px] mx-auto px-6 lg:px-12 flex flex-col justify-end pb-48 lg:pb-56 pt-32">
 
-      <!-- Eyebrow -->
       <div class="hero-eyebrow flex items-center gap-4 mb-8 opacity-0">
         <span class="h-[2px] w-12 bg-psg-red"></span>
-        <span class="text-white/80 text-[11px] tracking-[0.4em] uppercase font-semibold">Paris Saint-Germain · Uruguay</span>
+        <span class="text-white/70 text-[11px] tracking-[0.4em] uppercase font-semibold">Paris Saint-Germain · Uruguay</span>
       </div>
 
-      <!-- Titular gigante -->
-      <h1 class="hero-title font-headline text-white uppercase tracking-psg leading-[0.85] text-[clamp(3rem,11vw,11rem)]">
+      <h1 class="hero-title font-headline text-white uppercase tracking-psg leading-[0.82] text-[clamp(3.5rem,13vw,13rem)] font-black">
         <span class="hero-line block overflow-hidden"><span class="inline-block">Entrena</span></span>
         <span class="hero-line block overflow-hidden"><span class="inline-block">como los</span></span>
         <span class="hero-line block overflow-hidden"><span class="inline-block text-psg-red italic">campeones.</span></span>
       </h1>
 
-      <!-- Subtítulo -->
-      <p class="hero-sub max-w-xl mt-10 text-white/85 text-base lg:text-lg font-light leading-relaxed opacity-0">
-        La academia oficial del <strong class="font-semibold">Paris Saint-Germain</strong> llega a Uruguay.
+      <p class="hero-sub max-w-xl mt-10 text-white/80 text-base lg:text-lg font-light leading-relaxed opacity-0">
+        La academia oficial del <strong class="font-semibold text-white">Paris Saint-Germain</strong> llega a Uruguay.
         Metodología francesa, formación de élite y una experiencia que trasciende el deporte.
       </p>
 
-      <!-- CTAs -->
       <div class="hero-ctas flex flex-col sm:flex-row gap-4 mt-12 opacity-0">
         <a href="#inscripcion" class="btn-magnetic group inline-flex items-center justify-center gap-3 bg-psg-red hover:bg-psg-red-deep text-white px-10 py-5 text-[12px] tracking-[0.3em] uppercase font-bold transition-colors">
           <span>Únete a la Academia</span>
           <svg class="transition-transform group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <a href="#metodologia" class="inline-flex items-center justify-center gap-3 border border-white/30 hover:border-white text-white px-10 py-5 text-[12px] tracking-[0.3em] uppercase font-semibold transition-colors backdrop-blur-sm">
+        <a href="#metodologia" class="inline-flex items-center justify-center gap-3 border border-white/20 hover:border-white/60 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white px-10 py-5 text-[12px] tracking-[0.3em] uppercase font-semibold transition-colors">
           <span class="w-2 h-2 rounded-full bg-psg-red animate-pulse"></span>
           Ver Metodología
         </a>
       </div>
 
       <!-- Indicador scroll -->
-      <div class="hero-scroll absolute bottom-8 right-6 lg:right-12 flex flex-col items-center gap-3 opacity-0">
-        <span class="text-white/60 text-[10px] tracking-[0.4em] uppercase rotate-90 origin-center mb-12">Scroll</span>
-        <div class="w-[1px] h-16 bg-white/30 overflow-hidden relative">
+      <div class="hero-scroll absolute bottom-8 right-6 lg:right-12 flex-col items-center gap-3 opacity-0 hidden lg:flex">
+        <span class="text-white/50 text-[10px] tracking-[0.4em] uppercase rotate-90 origin-center mb-12">Scroll</span>
+        <div class="w-[1px] h-16 bg-white/20 overflow-hidden relative">
           <div class="scroll-line absolute top-0 left-0 w-full h-1/2 bg-white"></div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Stats footer del hero -->
-      <div class="hero-stats absolute bottom-8 left-6 lg:left-12 hidden lg:flex items-center gap-10 text-white opacity-0">
-        <div>
-          <span class="block font-headline text-3xl tracking-psg">21</span>
-          <span class="block text-[10px] tracking-[0.3em] uppercase text-white/60">Países</span>
+  <!-- ════════════════════════════════════════════════════════════════
+       MATCH CENTER · superpuesto sobre el borde inferior del hero
+  ═════════════════════════════════════════════════════════════════ -->
+  <section id="match-center" class="relative z-30 max-w-[1600px] mx-auto px-6 lg:px-12 -mt-32 lg:-mt-40 mb-20 lg:mb-32">
+
+    <!-- Header de la sección -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-psg-red opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-psg-red"></span>
+          </span>
+          <span class="text-white/60 text-[11px] tracking-[0.4em] uppercase font-semibold">Match Center</span>
         </div>
-        <span class="h-8 w-[1px] bg-white/20"></span>
-        <div>
-          <span class="block font-headline text-3xl tracking-psg">+50K</span>
-          <span class="block text-[10px] tracking-[0.3em] uppercase text-white/60">Atletas</span>
+        <h3 class="font-headline text-3xl lg:text-4xl tracking-psg uppercase text-white">
+          Próximos partidos
+        </h3>
+      </div>
+      <a href="#" class="hidden sm:inline-flex items-center gap-2 text-white/60 hover:text-white text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">
+        Ver calendario completo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Container donde se inyectan las tarjetas -->
+    <div id="fixtures-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+      <!-- Skeleton loaders (visible mientras carga la API) -->
+      <div class="fixture-skeleton glass-card p-6 animate-pulse">
+        <div class="h-3 w-24 bg-white/10 mb-6"></div>
+        <div class="flex items-center justify-between">
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
+          <div class="h-6 w-12 bg-white/10"></div>
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
         </div>
-        <span class="h-8 w-[1px] bg-white/20"></span>
-        <div>
-          <span class="block font-headline text-3xl tracking-psg">2005</span>
-          <span class="block text-[10px] tracking-[0.3em] uppercase text-white/60">Fundación</span>
+        <div class="h-3 w-32 bg-white/10 mt-6"></div>
+      </div>
+      <div class="fixture-skeleton glass-card p-6 animate-pulse">
+        <div class="h-3 w-24 bg-white/10 mb-6"></div>
+        <div class="flex items-center justify-between">
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
+          <div class="h-6 w-12 bg-white/10"></div>
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
         </div>
+        <div class="h-3 w-32 bg-white/10 mt-6"></div>
+      </div>
+      <div class="fixture-skeleton glass-card p-6 animate-pulse">
+        <div class="h-3 w-24 bg-white/10 mb-6"></div>
+        <div class="flex items-center justify-between">
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
+          <div class="h-6 w-12 bg-white/10"></div>
+          <div class="h-12 w-12 bg-white/10 rounded-full"></div>
+        </div>
+        <div class="h-3 w-32 bg-white/10 mt-6"></div>
       </div>
     </div>
   </section>
@@ -264,23 +281,21 @@
   <!-- ════════════════════════════════════════════════════════════════
        2 · THE PSG WAY · Metodología
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="metodologia" class="relative py-32 lg:py-48 bg-white overflow-hidden">
+  <section id="metodologia" class="relative py-32 lg:py-48 bg-psg-night overflow-hidden">
 
-    <!-- Número decorativo gigante -->
     <span class="section-number">01</span>
 
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative">
 
-      <!-- Header asimétrico -->
       <div class="grid grid-cols-12 gap-6 lg:gap-12 mb-20 lg:mb-32">
         <div class="col-span-12 lg:col-span-4">
           <div class="reveal-up flex items-center gap-4 mb-6">
             <span class="h-[2px] w-12 bg-psg-red"></span>
-            <span class="text-psg-navy/60 text-[11px] tracking-[0.4em] uppercase font-semibold">The PSG Way</span>
+            <span class="text-white/50 text-[11px] tracking-[0.4em] uppercase font-semibold">The PSG Way</span>
           </div>
         </div>
         <div class="col-span-12 lg:col-span-8">
-          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.9] text-[clamp(2.5rem,7vw,6rem)] text-psg-navy">
+          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.85] text-[clamp(2.8rem,8vw,7rem)] text-white">
             <span class="reveal-line block overflow-hidden"><span class="inline-block">La metodología</span></span>
             <span class="reveal-line block overflow-hidden"><span class="inline-block">que conquistó</span></span>
             <span class="reveal-line block overflow-hidden"><span class="inline-block italic text-psg-red">Europa.</span></span>
@@ -288,92 +303,87 @@
         </div>
       </div>
 
-      <!-- Bloque asimétrico: texto + visual -->
       <div class="grid grid-cols-12 gap-6 lg:gap-12 items-end">
 
-        <!-- Texto descriptivo (izquierda, ofset) -->
         <div class="col-span-12 lg:col-span-5 lg:col-start-1 reveal-up">
-          <p class="text-psg-navy/80 text-lg leading-relaxed mb-8 font-light">
+          <p class="text-white/75 text-lg leading-relaxed mb-8 font-light">
             Desde 2005, la Paris Saint-Germain Academy ha formado a más de
-            <strong class="font-semibold text-psg-navy">50.000 jóvenes en 21 países</strong>,
+            <strong class="font-semibold text-white">50.000 jóvenes en 21 países</strong>,
             siguiendo el mismo modelo que las categorías base del primer equipo.
           </p>
-          <p class="text-psg-navy/60 text-base leading-relaxed mb-10 font-light">
+          <p class="text-white/50 text-base leading-relaxed mb-10 font-light">
             En Uruguay traemos esa misma exigencia: técnica, táctica y valores parisinos
             adaptados al talento sudamericano. Cada atleta entrena bajo el saber-hacer
             de los profesionales del Parc des Princes.
           </p>
 
-          <!-- Lista de pilares -->
           <ul class="space-y-5 mb-10">
             <li class="flex items-start gap-4 reveal-up" data-delay="0.1">
               <span class="mt-1 text-psg-red font-headline text-sm">01</span>
               <div>
-                <h4 class="font-semibold text-psg-navy uppercase tracking-wider text-sm mb-1">Atletas de 4 a 19 años</h4>
-                <p class="text-psg-navy/60 text-sm font-light">Programas progresivos por categoría y nivel.</p>
+                <h4 class="font-semibold text-white uppercase tracking-wider text-sm mb-1">Atletas de 4 a 19 años</h4>
+                <p class="text-white/50 text-sm font-light">Programas progresivos por categoría y nivel.</p>
               </div>
             </li>
             <li class="flex items-start gap-4 reveal-up" data-delay="0.2">
               <span class="mt-1 text-psg-red font-headline text-sm">02</span>
               <div>
-                <h4 class="font-semibold text-psg-navy uppercase tracking-wider text-sm mb-1">Metodología exclusiva</h4>
-                <p class="text-psg-navy/60 text-sm font-light">Idéntica a las inferiores del primer equipo.</p>
+                <h4 class="font-semibold text-white uppercase tracking-wider text-sm mb-1">Metodología exclusiva</h4>
+                <p class="text-white/50 text-sm font-light">Idéntica a las inferiores del primer equipo.</p>
               </div>
             </li>
             <li class="flex items-start gap-4 reveal-up" data-delay="0.3">
               <span class="mt-1 text-psg-red font-headline text-sm">03</span>
               <div>
-                <h4 class="font-semibold text-psg-navy uppercase tracking-wider text-sm mb-1">Grupos mixtos y femeninos</h4>
-                <p class="text-psg-navy/60 text-sm font-light">Espacios inclusivos y de máxima exigencia.</p>
+                <h4 class="font-semibold text-white uppercase tracking-wider text-sm mb-1">Grupos mixtos y femeninos</h4>
+                <p class="text-white/50 text-sm font-light">Espacios inclusivos y de máxima exigencia.</p>
               </div>
             </li>
           </ul>
 
-          <a href="#sedes" class="inline-flex items-center gap-3 text-psg-navy hover:text-psg-red text-[11px] tracking-[0.3em] uppercase font-bold border-b border-psg-navy hover:border-psg-red pb-2 transition-colors">
+          <a href="#sedes" class="inline-flex items-center gap-3 text-white hover:text-psg-red text-[11px] tracking-[0.3em] uppercase font-bold border-b border-white/40 hover:border-psg-red pb-2 transition-colors">
             Conoce las sedes
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
         </div>
 
-        <!-- Visual derecho (ofset hacia abajo) -->
         <div class="col-span-12 lg:col-span-6 lg:col-start-7 reveal-up lg:translate-y-12">
-          <div class="relative aspect-[4/5] bg-slate-200 overflow-hidden parallax-frame">
+          <div class="relative aspect-[4/5] bg-white/5 overflow-hidden parallax-frame border border-white/10">
             <!--
               IMAGEN PRINCIPAL METODOLOGÍA
               ───────────────────────────────────────────────
               Archivo: /assets/images/metodologia-main.webp
               Tamaño: 1200x1500px (4:5)  |  Retina: 2400x3000px
-              Contenido sugerido: foto cenital de entrenamiento, sesión técnica con coaches
+              Contenido sugerido: foto cenital de entrenamiento, sesión técnica
               Peso máximo: 250KB WebP
             -->
-            <div class="parallax-img absolute inset-0 bg-slate-200" data-speed="0.3"></div>
+            <div class="parallax-img absolute inset-0 bg-white/5" data-speed="0.3"></div>
 
-            <!-- Tag decorativo flotante -->
-            <div class="absolute bottom-6 left-6 bg-white px-5 py-3">
-              <span class="block text-[9px] tracking-[0.3em] uppercase text-psg-navy/60">Desde</span>
-              <span class="block font-headline text-2xl tracking-psg text-psg-navy">2005 · París</span>
+            <div class="absolute bottom-6 left-6 glass-card px-5 py-3">
+              <span class="block text-[9px] tracking-[0.3em] uppercase text-white/50">Desde</span>
+              <span class="block font-headline text-2xl tracking-psg text-white">2005 · París</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Banda inferior con stats -->
-      <div class="mt-32 lg:mt-48 grid grid-cols-2 lg:grid-cols-4 gap-px bg-psg-navy/10 reveal-up">
-        <div class="bg-white p-8 lg:p-10">
-          <span class="counter block font-headline text-5xl lg:text-6xl tracking-psg text-psg-navy" data-target="21">0</span>
-          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-psg-navy/60">Países</span>
+      <!-- Banda de stats con glass -->
+      <div class="mt-32 lg:mt-48 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 reveal-up border border-white/10">
+        <div class="bg-psg-night p-8 lg:p-10">
+          <span class="counter block font-headline text-5xl lg:text-6xl tracking-psg text-white" data-target="21">0</span>
+          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-white/50">Países</span>
         </div>
-        <div class="bg-white p-8 lg:p-10">
-          <span class="counter block font-headline text-5xl lg:text-6xl tracking-psg text-psg-navy" data-target="210">0</span>
-          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-psg-navy/60">Centros</span>
+        <div class="bg-psg-night p-8 lg:p-10">
+          <span class="counter block font-headline text-5xl lg:text-6xl tracking-psg text-white" data-target="210">0</span>
+          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-white/50">Centros</span>
         </div>
-        <div class="bg-white p-8 lg:p-10">
+        <div class="bg-psg-night p-8 lg:p-10">
           <span class="block font-headline text-5xl lg:text-6xl tracking-psg text-psg-red">+<span class="counter inline" data-target="50">0</span>K</span>
-          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-psg-navy/60">Atletas</span>
+          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-white/50">Atletas</span>
         </div>
-        <div class="bg-white p-8 lg:p-10">
-          <span class="block font-headline text-5xl lg:text-6xl tracking-psg text-psg-navy">+<span class="counter inline" data-target="1000">0</span></span>
-          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-psg-navy/60">Entrenadores</span>
+        <div class="bg-psg-night p-8 lg:p-10">
+          <span class="block font-headline text-5xl lg:text-6xl tracking-psg text-white">+<span class="counter inline" data-target="1000">0</span></span>
+          <span class="block mt-2 text-[10px] tracking-[0.3em] uppercase text-white/50">Entrenadores</span>
         </div>
       </div>
     </div>
@@ -382,68 +392,60 @@
   <!-- ════════════════════════════════════════════════════════════════
        3 · SEDES OFICIALES URUGUAY
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="sedes" class="relative py-32 lg:py-48 bg-psg-navy text-white overflow-hidden">
+  <section id="sedes" class="relative py-32 lg:py-48 bg-psg-night-soft text-white overflow-hidden">
 
-    <span class="section-number section-number-light">02</span>
-
-    <!-- Decorativo: trazo rojo diagonal -->
+    <span class="section-number">02</span>
     <div class="absolute top-0 right-0 w-1/3 h-px bg-psg-red"></div>
 
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative">
 
-      <!-- Header -->
       <div class="grid grid-cols-12 gap-6 mb-20 lg:mb-28">
         <div class="col-span-12 lg:col-span-8">
           <div class="reveal-up flex items-center gap-4 mb-6">
             <span class="h-[2px] w-12 bg-psg-red"></span>
-            <span class="text-white/60 text-[11px] tracking-[0.4em] uppercase font-semibold">Sedes oficiales · Uruguay</span>
+            <span class="text-white/50 text-[11px] tracking-[0.4em] uppercase font-semibold">Sedes oficiales · Uruguay</span>
           </div>
-          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.9] text-[clamp(2.5rem,7vw,6rem)]">
+          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.85] text-[clamp(2.8rem,8vw,7rem)]">
             <span class="reveal-line block overflow-hidden"><span class="inline-block">Encuentra</span></span>
             <span class="reveal-line block overflow-hidden"><span class="inline-block">tu cancha.</span></span>
           </h2>
         </div>
         <div class="col-span-12 lg:col-span-4 flex lg:items-end reveal-up">
-          <p class="text-white/70 font-light leading-relaxed">
+          <p class="text-white/60 font-light leading-relaxed">
             Tres sedes equipadas con infraestructura de nivel internacional,
             distribuidas estratégicamente en Montevideo y la zona este.
           </p>
         </div>
       </div>
 
-      <!-- Grid de tarjetas -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- Card 1 -->
-        <article class="venue-card group relative overflow-hidden bg-psg-navy-deep cursor-pointer">
+        <article class="venue-card glass-card group relative overflow-hidden cursor-pointer">
           <div class="relative aspect-[4/5] overflow-hidden">
             <!--
               IMAGEN SEDE — MONTEVIDEO CARRASCO
               ───────────────────────────────────────────────
               Archivo: /assets/images/sede-carrasco.webp
               Tamaño: 800x1000px (4:5)  |  Retina: 1600x2000px
-              Contenido sugerido: cancha aérea o atleta con equipación PSG
-              Peso máximo: 200KB WebP
+              Peso máx: 200KB WebP
             -->
-            <div class="venue-img absolute inset-0 bg-slate-300 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-psg-navy-deep via-psg-navy-deep/40 to-transparent"></div>
+            <div class="venue-img absolute inset-0 bg-white/5 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-psg-night via-psg-night/40 to-transparent"></div>
 
-            <!-- Tag superior -->
             <div class="absolute top-6 left-6 flex items-center gap-2 bg-psg-red px-3 py-1.5">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
               <span class="text-white text-[10px] tracking-[0.25em] uppercase font-bold">Sede principal</span>
             </div>
 
-            <!-- Info inferior -->
             <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-              <span class="block text-white/60 text-[10px] tracking-[0.3em] uppercase mb-2">Montevideo</span>
+              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-2">Montevideo</span>
               <h3 class="font-headline text-3xl lg:text-4xl tracking-psg uppercase text-white mb-4">Carrasco</h3>
 
-              <!-- Detalles que aparecen en hover -->
               <div class="venue-details max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-out">
-                <div class="pt-4 border-t border-white/20 space-y-1.5 text-sm text-white/80">
-                  <p><span class="text-white/50">Días:</span> Lun · Mié · Vie</p>
-                  <p><span class="text-white/50">Horario:</span> 17:00 – 20:00</p>
+                <div class="pt-4 border-t border-white/15 space-y-1.5 text-sm text-white/75">
+                  <p><span class="text-white/40">Días:</span> Lun · Mié · Vie</p>
+                  <p><span class="text-white/40">Horario:</span> 17:00 – 20:00</p>
                 </div>
               </div>
 
@@ -456,7 +458,7 @@
         </article>
 
         <!-- Card 2 -->
-        <article class="venue-card group relative overflow-hidden bg-psg-navy-deep cursor-pointer">
+        <article class="venue-card glass-card group relative overflow-hidden cursor-pointer">
           <div class="relative aspect-[4/5] overflow-hidden">
             <!--
               IMAGEN SEDE — POCITOS
@@ -464,21 +466,21 @@
               Archivo: /assets/images/sede-pocitos.webp
               Tamaño: 800x1000px (4:5)  |  Retina: 1600x2000px
             -->
-            <div class="venue-img absolute inset-0 bg-slate-400 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-psg-navy-deep via-psg-navy-deep/40 to-transparent"></div>
+            <div class="venue-img absolute inset-0 bg-white/5 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-psg-night via-psg-night/40 to-transparent"></div>
 
-            <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-sm px-3 py-1.5 border border-white/20">
+            <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-md px-3 py-1.5 border border-white/15">
               <span class="text-white text-[10px] tracking-[0.25em] uppercase font-bold">Urbana</span>
             </div>
 
             <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-              <span class="block text-white/60 text-[10px] tracking-[0.3em] uppercase mb-2">Montevideo</span>
+              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-2">Montevideo</span>
               <h3 class="font-headline text-3xl lg:text-4xl tracking-psg uppercase text-white mb-4">Pocitos</h3>
 
               <div class="venue-details max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-out">
-                <div class="pt-4 border-t border-white/20 space-y-1.5 text-sm text-white/80">
-                  <p><span class="text-white/50">Días:</span> Mar · Jue · Sáb</p>
-                  <p><span class="text-white/50">Horario:</span> 16:00 – 19:00</p>
+                <div class="pt-4 border-t border-white/15 space-y-1.5 text-sm text-white/75">
+                  <p><span class="text-white/40">Días:</span> Mar · Jue · Sáb</p>
+                  <p><span class="text-white/40">Horario:</span> 16:00 – 19:00</p>
                 </div>
               </div>
 
@@ -491,7 +493,7 @@
         </article>
 
         <!-- Card 3 -->
-        <article class="venue-card group relative overflow-hidden bg-psg-navy-deep cursor-pointer">
+        <article class="venue-card glass-card group relative overflow-hidden cursor-pointer">
           <div class="relative aspect-[4/5] overflow-hidden">
             <!--
               IMAGEN SEDE — PUNTA DEL ESTE
@@ -499,21 +501,21 @@
               Archivo: /assets/images/sede-punta.webp
               Tamaño: 800x1000px (4:5)  |  Retina: 1600x2000px
             -->
-            <div class="venue-img absolute inset-0 bg-slate-500 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-psg-navy-deep via-psg-navy-deep/40 to-transparent"></div>
+            <div class="venue-img absolute inset-0 bg-white/5 transition-transform duration-[700ms] ease-out group-hover:scale-105"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-psg-night via-psg-night/40 to-transparent"></div>
 
-            <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-sm px-3 py-1.5 border border-white/20">
+            <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-md px-3 py-1.5 border border-white/15">
               <span class="text-white text-[10px] tracking-[0.25em] uppercase font-bold">Verano</span>
             </div>
 
             <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-              <span class="block text-white/60 text-[10px] tracking-[0.3em] uppercase mb-2">Maldonado</span>
+              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-2">Maldonado</span>
               <h3 class="font-headline text-3xl lg:text-4xl tracking-psg uppercase text-white mb-4">Punta del Este</h3>
 
               <div class="venue-details max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-out">
-                <div class="pt-4 border-t border-white/20 space-y-1.5 text-sm text-white/80">
-                  <p><span class="text-white/50">Días:</span> Lun a Vie</p>
-                  <p><span class="text-white/50">Temporada:</span> Dic · Ene · Feb</p>
+                <div class="pt-4 border-t border-white/15 space-y-1.5 text-sm text-white/75">
+                  <p><span class="text-white/40">Días:</span> Lun a Vie</p>
+                  <p><span class="text-white/40">Temporada:</span> Dic · Ene · Feb</p>
                 </div>
               </div>
 
@@ -531,20 +533,19 @@
   <!-- ════════════════════════════════════════════════════════════════
        4 · CATEGORÍAS Y PROGRAMAS
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="programas" class="relative py-32 lg:py-48 bg-psg-light overflow-hidden">
+  <section id="programas" class="relative py-32 lg:py-48 bg-psg-night overflow-hidden">
 
     <span class="section-number">03</span>
 
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative">
 
-      <!-- Header -->
       <div class="grid grid-cols-12 gap-6 mb-20 lg:mb-28">
         <div class="col-span-12 lg:col-span-7">
           <div class="reveal-up flex items-center gap-4 mb-6">
             <span class="h-[2px] w-12 bg-psg-red"></span>
-            <span class="text-psg-navy/60 text-[11px] tracking-[0.4em] uppercase font-semibold">Programas por categoría</span>
+            <span class="text-white/50 text-[11px] tracking-[0.4em] uppercase font-semibold">Programas por categoría</span>
           </div>
-          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.9] text-[clamp(2.5rem,7vw,6rem)] text-psg-navy">
+          <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.85] text-[clamp(2.8rem,8vw,7rem)] text-white">
             <span class="reveal-line block overflow-hidden"><span class="inline-block">Una ruta</span></span>
             <span class="reveal-line block overflow-hidden"><span class="inline-block">de élite,</span></span>
             <span class="reveal-line block overflow-hidden"><span class="inline-block italic text-psg-red">desde los 4 años.</span></span>
@@ -552,54 +553,50 @@
         </div>
       </div>
 
-      <!-- Grid de programas -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-psg-navy/10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/10">
 
-        <!-- Programa 1 -->
-        <article class="program-card group bg-white p-8 lg:p-10 hover:bg-psg-navy transition-colors duration-500 cursor-default">
+        <article class="program-card glass-card-flat group p-8 lg:p-10 hover:bg-white/[0.04] transition-colors duration-500 cursor-default">
           <div class="flex items-center justify-between mb-12">
             <span class="font-headline text-xs tracking-[0.3em] text-psg-red">U7</span>
-            <span class="font-headline text-3xl tracking-psg text-psg-navy/10 group-hover:text-white/10 transition-colors">01</span>
+            <span class="font-headline text-3xl tracking-psg text-white/5">01</span>
           </div>
-          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-psg-navy group-hover:text-white transition-colors leading-none mb-2">Discovery</h3>
-          <span class="block text-psg-navy/60 group-hover:text-white/60 text-sm mb-6 transition-colors">4 – 7 años</span>
-          <p class="text-psg-navy/70 group-hover:text-white/70 text-sm font-light leading-relaxed mb-8 transition-colors">
+          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-white leading-none mb-2">Discovery</h3>
+          <span class="block text-white/50 text-sm mb-6">4 – 7 años</span>
+          <p class="text-white/65 text-sm font-light leading-relaxed mb-8">
             Iniciación lúdica al fútbol. Coordinación, motricidad y primeros gestos técnicos.
           </p>
-          <ul class="space-y-2 text-sm text-psg-navy/60 group-hover:text-white/50 transition-colors">
+          <ul class="space-y-2 text-sm text-white/50">
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> 2h semanales</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Mixto</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Eventos sorpresa</li>
           </ul>
         </article>
 
-        <!-- Programa 2 -->
-        <article class="program-card group bg-white p-8 lg:p-10 hover:bg-psg-navy transition-colors duration-500 cursor-default">
+        <article class="program-card glass-card-flat group p-8 lg:p-10 hover:bg-white/[0.04] transition-colors duration-500 cursor-default">
           <div class="flex items-center justify-between mb-12">
             <span class="font-headline text-xs tracking-[0.3em] text-psg-red">U12</span>
-            <span class="font-headline text-3xl tracking-psg text-psg-navy/10 group-hover:text-white/10 transition-colors">02</span>
+            <span class="font-headline text-3xl tracking-psg text-white/5">02</span>
           </div>
-          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-psg-navy group-hover:text-white transition-colors leading-none mb-2">Academy</h3>
-          <span class="block text-psg-navy/60 group-hover:text-white/60 text-sm mb-6 transition-colors">8 – 12 años</span>
-          <p class="text-psg-navy/70 group-hover:text-white/70 text-sm font-light leading-relaxed mb-8 transition-colors">
+          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-white leading-none mb-2">Academy</h3>
+          <span class="block text-white/50 text-sm mb-6">8 – 12 años</span>
+          <p class="text-white/65 text-sm font-light leading-relaxed mb-8">
             Desarrollo técnico-táctico bajo metodología PSG. Torneos y copas regionales.
           </p>
-          <ul class="space-y-2 text-sm text-psg-navy/60 group-hover:text-white/50 transition-colors">
+          <ul class="space-y-2 text-sm text-white/50">
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> 3h semanales</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Paris Challenge</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Copas regionales</li>
           </ul>
         </article>
 
-        <!-- Programa 3 — DESTACADO -->
-        <article class="program-card group bg-psg-navy text-white p-8 lg:p-10 cursor-default relative">
-          <!-- Tag élite -->
+        <!-- Destacado -->
+        <article class="program-card relative p-8 lg:p-10 cursor-default bg-gradient-to-br from-psg-red/15 to-psg-night-soft border-y border-psg-red/30">
           <span class="absolute top-0 right-0 bg-psg-red text-white text-[9px] tracking-[0.3em] uppercase font-bold px-3 py-1">Élite</span>
           <div class="flex items-center justify-between mb-12">
             <span class="font-headline text-xs tracking-[0.3em] text-psg-red">U17</span>
             <span class="font-headline text-3xl tracking-psg text-white/10">03</span>
           </div>
-          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase leading-none mb-2">Elite</h3>
+          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase leading-none mb-2 text-white">Elite</h3>
           <span class="block text-white/60 text-sm mb-6">13 – 17 años</span>
           <p class="text-white/80 text-sm font-light leading-relaxed mb-8">
             Alto rendimiento. Representación nacional e internacional con la equipación oficial.
@@ -611,18 +608,17 @@
           </ul>
         </article>
 
-        <!-- Programa 4 -->
-        <article class="program-card group bg-white p-8 lg:p-10 hover:bg-psg-navy transition-colors duration-500 cursor-default">
+        <article class="program-card glass-card-flat group p-8 lg:p-10 hover:bg-white/[0.04] transition-colors duration-500 cursor-default">
           <div class="flex items-center justify-between mb-12">
             <span class="font-headline text-xs tracking-[0.3em] text-psg-red">U23</span>
-            <span class="font-headline text-3xl tracking-psg text-psg-navy/10 group-hover:text-white/10 transition-colors">04</span>
+            <span class="font-headline text-3xl tracking-psg text-white/5">04</span>
           </div>
-          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-psg-navy group-hover:text-white transition-colors leading-none mb-2">Pro Future</h3>
-          <span class="block text-psg-navy/60 group-hover:text-white/60 text-sm mb-6 transition-colors">18 – 23 años</span>
-          <p class="text-psg-navy/70 group-hover:text-white/70 text-sm font-light leading-relaxed mb-8 transition-colors">
+          <h3 class="font-headline text-2xl lg:text-3xl tracking-psg uppercase text-white leading-none mb-2">Pro Future</h3>
+          <span class="block text-white/50 text-sm mb-6">18 – 23 años</span>
+          <p class="text-white/65 text-sm font-light leading-relaxed mb-8">
             Fútbol + educación. Camino al profesionalismo con scouting internacional.
           </p>
-          <ul class="space-y-2 text-sm text-psg-navy/60 group-hover:text-white/50 transition-colors">
+          <ul class="space-y-2 text-sm text-white/50">
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Intercambio</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Pro Experience</li>
             <li class="flex items-center gap-2"><span class="text-psg-red">→</span> Educación dual</li>
@@ -630,10 +626,9 @@
         </article>
       </div>
 
-      <!-- CTA inferior -->
       <div class="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 reveal-up">
-        <p class="text-psg-navy/60 text-sm font-light">¿No estás seguro de qué programa elegir?</p>
-        <a href="#inscripcion" class="btn-magnetic inline-flex items-center gap-3 bg-psg-navy hover:bg-psg-red text-white px-8 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">
+        <p class="text-white/50 text-sm font-light">¿No estás seguro de qué programa elegir?</p>
+        <a href="#inscripcion" class="btn-magnetic inline-flex items-center gap-3 glass-card hover:bg-psg-red hover:border-psg-red text-white px-8 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">
           Asesoramiento gratuito
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
@@ -644,136 +639,131 @@
   <!-- ════════════════════════════════════════════════════════════════
        5 · MEMBRESÍAS · PRICING
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="membresias" class="relative py-32 lg:py-48 bg-white overflow-hidden">
+  <section id="membresias" class="relative py-32 lg:py-48 bg-psg-night-soft overflow-hidden">
 
     <span class="section-number">04</span>
 
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative">
 
-      <!-- Header -->
       <div class="text-center mb-20 lg:mb-28">
         <div class="reveal-up inline-flex items-center gap-4 mb-6">
           <span class="h-[2px] w-12 bg-psg-red"></span>
-          <span class="text-psg-navy/60 text-[11px] tracking-[0.4em] uppercase font-semibold">Membresías</span>
+          <span class="text-white/50 text-[11px] tracking-[0.4em] uppercase font-semibold">Membresías</span>
           <span class="h-[2px] w-12 bg-psg-red"></span>
         </div>
-        <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.9] text-[clamp(2.5rem,7vw,6rem)] text-psg-navy">
+        <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.85] text-[clamp(2.8rem,8vw,7rem)] text-white">
           <span class="reveal-line block overflow-hidden"><span class="inline-block">Elige tu</span></span>
           <span class="reveal-line block overflow-hidden"><span class="inline-block italic text-psg-red">camino.</span></span>
         </h2>
       </div>
 
-      <!-- Tabla de planes -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- Plan Basic -->
-        <div class="plan-card relative bg-white border border-psg-navy/10 p-10 lg:p-12 reveal-up">
-          <span class="block text-[10px] tracking-[0.4em] uppercase text-psg-navy/60 mb-3">Inicial</span>
-          <h3 class="font-headline text-3xl tracking-psg uppercase text-psg-navy mb-6">Discovery</h3>
+        <div class="plan-card glass-card p-10 lg:p-12 reveal-up">
+          <span class="block text-[10px] tracking-[0.4em] uppercase text-white/50 mb-3">Inicial</span>
+          <h3 class="font-headline text-3xl tracking-psg uppercase text-white mb-6">Discovery</h3>
           <div class="flex items-baseline gap-2 mb-8">
-            <span class="font-headline text-5xl tracking-psg text-psg-navy">$4.900</span>
-            <span class="text-psg-navy/50 text-sm">/mes</span>
+            <span class="font-headline text-5xl tracking-psg text-white">$4.900</span>
+            <span class="text-white/40 text-sm">/mes</span>
           </div>
-          <p class="text-psg-navy/60 text-sm font-light leading-relaxed mb-10">Pensado para los primeros pasos en la academia. Acceso a una sede.</p>
+          <p class="text-white/50 text-sm font-light leading-relaxed mb-10">Pensado para los primeros pasos en la academia. Acceso a una sede.</p>
 
-          <ul class="space-y-4 mb-12 text-sm">
+          <ul class="space-y-4 mb-12 text-sm text-white/85">
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>2 sesiones semanales</span></li>
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Kit oficial de bienvenida</span></li>
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Acceso a 1 sede</span></li>
-            <li class="flex items-start gap-3 text-psg-navy/30"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Torneos internacionales</span></li>
+            <li class="flex items-start gap-3 text-white/25"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Torneos internacionales</span></li>
           </ul>
 
-          <a href="#inscripcion" class="block text-center bg-white hover:bg-psg-navy text-psg-navy hover:text-white border border-psg-navy px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Comenzar</a>
+          <a href="#inscripcion" class="block text-center bg-white/5 hover:bg-white hover:text-psg-night text-white border border-white/20 hover:border-white px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Comenzar</a>
         </div>
 
-        <!-- Plan Elite — DESTACADO -->
-        <div class="plan-card plan-card-featured relative bg-psg-navy text-white p-10 lg:p-12 lg:-mt-6 lg:scale-105 reveal-up shadow-2xl">
-          <!-- Borde brillante -->
+        <!-- Plan Elite DESTACADO -->
+        <div class="plan-card plan-card-featured relative p-10 lg:p-12 lg:-mt-6 lg:scale-105 reveal-up">
           <div class="absolute inset-0 plan-shine pointer-events-none"></div>
 
-          <!-- Badge superior -->
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-psg-red px-5 py-2 flex items-center gap-2">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-psg-red px-5 py-2 flex items-center gap-2 z-10">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span class="text-white text-[10px] tracking-[0.3em] uppercase font-bold">Recomendado</span>
           </div>
 
-          <span class="block text-[10px] tracking-[0.4em] uppercase text-white/60 mb-3">Avanzado</span>
-          <h3 class="font-headline text-3xl tracking-psg uppercase text-white mb-6">Elite</h3>
-          <div class="flex items-baseline gap-2 mb-8">
-            <span class="font-headline text-5xl tracking-psg text-white">$8.500</span>
-            <span class="text-white/50 text-sm">/mes</span>
+          <div class="relative z-10">
+            <span class="block text-[10px] tracking-[0.4em] uppercase text-white/60 mb-3">Avanzado</span>
+            <h3 class="font-headline text-3xl tracking-psg uppercase text-white mb-6">Elite</h3>
+            <div class="flex items-baseline gap-2 mb-8">
+              <span class="font-headline text-5xl tracking-psg text-white">$8.500</span>
+              <span class="text-white/50 text-sm">/mes</span>
+            </div>
+            <p class="text-white/70 text-sm font-light leading-relaxed mb-10">Para atletas con ambición competitiva. Acceso multi-sede + eventos internacionales.</p>
+
+            <ul class="space-y-4 mb-12 text-sm text-white">
+              <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>4 sesiones semanales</span></li>
+              <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Equipación completa de competición</span></li>
+              <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Acceso a todas las sedes</span></li>
+              <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>PSG Academy Cup Brasil</span></li>
+              <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Evaluación física trimestral</span></li>
+            </ul>
+
+            <a href="#inscripcion" class="btn-magnetic block text-center bg-psg-red hover:bg-psg-red-deep text-white px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Unirme al Elite</a>
           </div>
-          <p class="text-white/70 text-sm font-light leading-relaxed mb-10">Para atletas con ambición competitiva. Acceso multi-sede + eventos internacionales.</p>
-
-          <ul class="space-y-4 mb-12 text-sm">
-            <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>4 sesiones semanales</span></li>
-            <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Equipación completa de competición</span></li>
-            <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Acceso a todas las sedes</span></li>
-            <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>PSG Academy Cup Brasil</span></li>
-            <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Evaluación física trimestral</span></li>
-          </ul>
-
-          <a href="#inscripcion" class="btn-magnetic block text-center bg-psg-red hover:bg-psg-red-deep text-white px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Unirme al Elite</a>
         </div>
 
         <!-- Plan Pro -->
-        <div class="plan-card relative bg-white border border-psg-navy/10 p-10 lg:p-12 reveal-up">
-          <span class="block text-[10px] tracking-[0.4em] uppercase text-psg-navy/60 mb-3">Profesional</span>
-          <h3 class="font-headline text-3xl tracking-psg uppercase text-psg-navy mb-6">Pro Future</h3>
+        <div class="plan-card glass-card p-10 lg:p-12 reveal-up">
+          <span class="block text-[10px] tracking-[0.4em] uppercase text-white/50 mb-3">Profesional</span>
+          <h3 class="font-headline text-3xl tracking-psg uppercase text-white mb-6">Pro Future</h3>
           <div class="flex items-baseline gap-2 mb-8">
-            <span class="font-headline text-5xl tracking-psg text-psg-navy">$14.900</span>
-            <span class="text-psg-navy/50 text-sm">/mes</span>
+            <span class="font-headline text-5xl tracking-psg text-white">$14.900</span>
+            <span class="text-white/40 text-sm">/mes</span>
           </div>
-          <p class="text-psg-navy/60 text-sm font-light leading-relaxed mb-10">Para quienes apuntan al fútbol profesional. Scouting y experiencias en París.</p>
+          <p class="text-white/50 text-sm font-light leading-relaxed mb-10">Para quienes apuntan al fútbol profesional. Scouting y experiencias en París.</p>
 
-          <ul class="space-y-4 mb-12 text-sm">
+          <ul class="space-y-4 mb-12 text-sm text-white/85">
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Sesiones diarias</span></li>
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Equipación pro + accesorios</span></li>
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Pro Experience en París</span></li>
             <li class="flex items-start gap-3"><svg class="text-psg-red flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Asesoramiento educativo</span></li>
           </ul>
 
-          <a href="#inscripcion" class="block text-center bg-white hover:bg-psg-navy text-psg-navy hover:text-white border border-psg-navy px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Aplicar</a>
+          <a href="#inscripcion" class="block text-center bg-white/5 hover:bg-white hover:text-psg-night text-white border border-white/20 hover:border-white px-6 py-4 text-[11px] tracking-[0.3em] uppercase font-bold transition-colors">Aplicar</a>
         </div>
       </div>
 
-      <p class="text-center text-psg-navy/40 text-xs mt-12 tracking-wider">Precios expresados en pesos uruguayos. Consulta becas y planes familiares.</p>
+      <p class="text-center text-white/30 text-xs mt-12 tracking-wider">Precios expresados en pesos uruguayos. Consulta becas y planes familiares.</p>
     </div>
   </section>
 
   <!-- ════════════════════════════════════════════════════════════════
        6 · INSCRIPCIÓN · FORMULARIO
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="inscripcion" class="relative py-32 lg:py-48 bg-psg-navy text-white overflow-hidden">
+  <section id="inscripcion" class="relative py-32 lg:py-48 bg-psg-night text-white overflow-hidden">
 
-    <span class="section-number section-number-light">05</span>
+    <span class="section-number">05</span>
 
     <!--
       BACKGROUND DECORATIVO (opcional)
       ───────────────────────────────────────────────
       Archivo: /assets/images/inscripcion-bg.webp
       Tamaño: 2560x1440px (16:9)
-      Contenido sugerido: foto del Parc des Princes o cancha con humo
-      Aplica un overlay del 85% para mantener legibilidad
     -->
-    <div class="absolute inset-0 bg-slate-700 opacity-10"></div>
+    <div class="absolute inset-0 bg-white/5 opacity-30"></div>
 
     <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 
-      <!-- Columna info -->
       <div class="lg:col-span-5">
         <div class="reveal-up flex items-center gap-4 mb-6">
           <span class="h-[2px] w-12 bg-psg-red"></span>
-          <span class="text-white/60 text-[11px] tracking-[0.4em] uppercase font-semibold">Inscripción</span>
+          <span class="text-white/50 text-[11px] tracking-[0.4em] uppercase font-semibold">Inscripción</span>
         </div>
 
-        <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.9] text-[clamp(2.5rem,5vw,4.5rem)] mb-10">
+        <h2 class="reveal-headline font-headline uppercase tracking-psg leading-[0.85] text-[clamp(2.5rem,5vw,4.5rem)] mb-10">
           <span class="reveal-line block overflow-hidden"><span class="inline-block">Tu lugar</span></span>
           <span class="reveal-line block overflow-hidden"><span class="inline-block">en la</span></span>
           <span class="reveal-line block overflow-hidden"><span class="inline-block italic text-psg-red">Academia.</span></span>
         </h2>
 
-        <p class="text-white/70 font-light leading-relaxed mb-10 max-w-md">
+        <p class="text-white/65 font-light leading-relaxed mb-10 max-w-md">
           Completa el formulario y un coordinador se pondrá en contacto en menos de 48 horas
           para coordinar la evaluación inicial sin costo.
         </p>
@@ -782,29 +772,28 @@
           <div class="flex items-start gap-4">
             <span class="text-psg-red mt-1">✦</span>
             <div>
-              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-1">Email</span>
+              <span class="block text-white/40 text-[10px] tracking-[0.3em] uppercase mb-1">Email</span>
               <a href="mailto:info@psgacademy.uy" class="text-white hover:text-psg-red transition-colors">info@psgacademy.uy</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <span class="text-psg-red mt-1">✦</span>
             <div>
-              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-1">Teléfono</span>
+              <span class="block text-white/40 text-[10px] tracking-[0.3em] uppercase mb-1">Teléfono</span>
               <a href="tel:+59899000000" class="text-white hover:text-psg-red transition-colors">+598 99 000 000</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <span class="text-psg-red mt-1">✦</span>
             <div>
-              <span class="block text-white/50 text-[10px] tracking-[0.3em] uppercase mb-1">Oficinas</span>
+              <span class="block text-white/40 text-[10px] tracking-[0.3em] uppercase mb-1">Oficinas</span>
               <span class="text-white">Carrasco, Montevideo</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Formulario -->
-      <form class="lg:col-span-7 reveal-up" id="signup-form" novalidate>
+      <form class="lg:col-span-7 reveal-up glass-card p-8 lg:p-12" id="signup-form" novalidate>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
 
           <div class="form-field">
@@ -862,13 +851,13 @@
 
           <div class="md:col-span-2 flex items-start gap-3">
             <input id="consent" type="checkbox" required class="mt-1 accent-psg-red" />
-            <label for="consent" class="text-white/60 text-xs font-light leading-relaxed cursor-pointer">
+            <label for="consent" class="text-white/55 text-xs font-light leading-relaxed cursor-pointer">
               Acepto la <a href="#" class="underline hover:text-white">política de privacidad</a> y el tratamiento de datos para coordinar la inscripción.
             </label>
           </div>
 
           <div class="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-4">
-            <p class="text-white/40 text-xs">Tiempo estimado de respuesta · 48h</p>
+            <p class="text-white/30 text-xs">Tiempo estimado de respuesta · 48h</p>
             <button type="submit" class="btn-magnetic group inline-flex items-center justify-center gap-3 bg-psg-red hover:bg-psg-red-deep text-white px-10 py-5 text-[12px] tracking-[0.3em] uppercase font-bold transition-colors">
               Enviar inscripción
               <svg class="transition-transform group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -880,11 +869,11 @@
   </section>
 
   <!-- ════════════════════════════════════════════════════════════════
-       FRASE GIGANTE FINAL · Ici c'est Paris
+       FRASE GIGANTE FINAL
   ═════════════════════════════════════════════════════════════════ -->
-  <section class="bg-psg-navy-deep py-20 lg:py-32 overflow-hidden">
+  <section class="bg-psg-night-soft py-20 lg:py-32 overflow-hidden border-t border-white/5">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
-      <h2 class="font-headline uppercase tracking-psg text-white leading-[0.85] text-[clamp(4rem,18vw,18rem)] text-center">
+      <h2 class="font-headline uppercase tracking-psg text-white leading-[0.82] text-[clamp(4rem,18vw,18rem)] text-center">
         <span class="block">Ici c'est</span>
         <span class="block text-psg-red italic">Uruguay.</span>
       </h2>
@@ -894,25 +883,22 @@
   <!-- ════════════════════════════════════════════════════════════════
        FOOTER
   ═════════════════════════════════════════════════════════════════ -->
-  <footer class="bg-psg-navy text-white py-20 lg:py-24">
+  <footer class="bg-psg-night text-white py-20 lg:py-24 border-t border-white/5">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
 
-      <!-- Top grid -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-16 pb-16 border-b border-white/10">
 
-        <!-- Logo + descripción -->
         <div class="lg:col-span-4">
           <!--
-            LOGO FOOTER (versión completa monocromática blanca)
+            LOGO FOOTER
             ─────────────────────────────────────────────
             Archivo: /assets/images/logo-psg-academy-footer.svg
             Tamaño: 240x80px  |  Proporción: 3:1
           -->
-          <div class="footer-logo w-40 h-16 bg-slate-200/10 mb-8"></div>
-          <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
+          <div class="footer-logo w-40 h-16 bg-white/5 border border-white/10 mb-8"></div>
+          <p class="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
             Academia oficial del Paris Saint-Germain en Uruguay. Formación, valores y pasión desde París hasta el Río de la Plata.
           </p>
-          <!-- Redes sociales -->
           <div class="flex items-center gap-3">
             <a href="#" aria-label="Instagram" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.67 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.67-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 0 0 5.84 12 6.16 6.16 0 0 0 12 18.16 6.16 6.16 0 0 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 12 8a4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 1-1.44 1.44 1.44 1.44 0 0 1 1.44-1.44z"/></svg></a>
             <a href="#" aria-label="TikTok" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.79a8.16 8.16 0 0 0 4.77 1.52V6.89a4.85 4.85 0 0 1-1.84-.2z"/></svg></a>
@@ -921,59 +907,53 @@
           </div>
         </div>
 
-        <!-- Navegación -->
         <div class="lg:col-span-2">
-          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-6 font-bold">Academia</h4>
+          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/30 mb-6 font-bold">Academia</h4>
           <ul class="space-y-3 text-sm">
-            <li><a href="#metodologia" class="text-white/80 hover:text-psg-red transition-colors">Metodología</a></li>
-            <li><a href="#sedes"        class="text-white/80 hover:text-psg-red transition-colors">Sedes</a></li>
-            <li><a href="#programas"    class="text-white/80 hover:text-psg-red transition-colors">Programas</a></li>
-            <li><a href="#membresias"   class="text-white/80 hover:text-psg-red transition-colors">Membresías</a></li>
+            <li><a href="#metodologia" class="text-white/75 hover:text-psg-red transition-colors">Metodología</a></li>
+            <li><a href="#sedes"        class="text-white/75 hover:text-psg-red transition-colors">Sedes</a></li>
+            <li><a href="#programas"    class="text-white/75 hover:text-psg-red transition-colors">Programas</a></li>
+            <li><a href="#membresias"   class="text-white/75 hover:text-psg-red transition-colors">Membresías</a></li>
           </ul>
         </div>
         <div class="lg:col-span-2">
-          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-6 font-bold">Soporte</h4>
+          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/30 mb-6 font-bold">Soporte</h4>
           <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-white/80 hover:text-psg-red transition-colors">Centro de ayuda</a></li>
-            <li><a href="#" class="text-white/80 hover:text-psg-red transition-colors">Preguntas frecuentes</a></li>
-            <li><a href="#" class="text-white/80 hover:text-psg-red transition-colors">Contacto</a></li>
-            <li><a href="#" class="text-white/80 hover:text-psg-red transition-colors">Empleo</a></li>
+            <li><a href="#" class="text-white/75 hover:text-psg-red transition-colors">Centro de ayuda</a></li>
+            <li><a href="#" class="text-white/75 hover:text-psg-red transition-colors">Preguntas frecuentes</a></li>
+            <li><a href="#" class="text-white/75 hover:text-psg-red transition-colors">Contacto</a></li>
+            <li><a href="#" class="text-white/75 hover:text-psg-red transition-colors">Empleo</a></li>
           </ul>
         </div>
 
-        <!-- Newsletter -->
         <div class="lg:col-span-4">
-          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-6 font-bold">Newsletter</h4>
-          <p class="text-white/60 text-sm leading-relaxed mb-5">Recibe novedades, fechas de eventos y becas directamente en tu correo.</p>
-          <form class="flex border border-white/20 focus-within:border-psg-red transition-colors">
+          <h4 class="text-[10px] tracking-[0.3em] uppercase text-white/30 mb-6 font-bold">Newsletter</h4>
+          <p class="text-white/55 text-sm leading-relaxed mb-5">Recibe novedades, fechas de eventos y becas directamente en tu correo.</p>
+          <form class="flex border border-white/15 focus-within:border-psg-red transition-colors bg-white/5 backdrop-blur-md">
             <input type="email" placeholder="tu@email.com" class="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none" />
             <button type="submit" class="bg-psg-red hover:bg-psg-red-deep px-5 transition-colors" aria-label="Suscribirse">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-white"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </button>
           </form>
 
-          <!-- Logos institucionales -->
           <div class="mt-10">
-            <span class="block text-[10px] tracking-[0.3em] uppercase text-white/40 mb-4">Sponsors oficiales</span>
+            <span class="block text-[10px] tracking-[0.3em] uppercase text-white/30 mb-4">Sponsors oficiales</span>
             <div class="grid grid-cols-4 gap-4">
               <!--
-                LOGOS PATROCINADORES (4 logos monocromáticos)
-                ─────────────────────────────────────────────
+                LOGOS SPONSORS (4 logos monocromáticos)
                 Archivos: /assets/images/sponsor-1.svg ... sponsor-4.svg
-                Tamaño cada uno: 120x40px  |  Proporción: 3:1
-                Versiones en blanco o gris claro sobre fondo navy
+                Tamaño: 120x40px (3:1) c/u
               -->
-              <div class="aspect-[3/1] bg-slate-200/10"></div>
-              <div class="aspect-[3/1] bg-slate-200/10"></div>
-              <div class="aspect-[3/1] bg-slate-200/10"></div>
-              <div class="aspect-[3/1] bg-slate-200/10"></div>
+              <div class="aspect-[3/1] bg-white/5 border border-white/10"></div>
+              <div class="aspect-[3/1] bg-white/5 border border-white/10"></div>
+              <div class="aspect-[3/1] bg-white/5 border border-white/10"></div>
+              <div class="aspect-[3/1] bg-white/5 border border-white/10"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Bottom bar -->
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-[11px] tracking-[0.2em] uppercase text-white/40">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-[11px] tracking-[0.2em] uppercase text-white/30">
         <p>© 2026 PSG Academy Uruguay · Todos los derechos reservados</p>
         <div class="flex items-center gap-6">
           <a href="#" class="hover:text-white transition-colors">Política de privacidad</a>
@@ -985,16 +965,209 @@
   </footer>
 
   <!-- ════════════════════════════════════════════════════════════════
-       SCRIPTS
+       SCRIPTS · LIBS
   ═════════════════════════════════════════════════════════════════ -->
-  <!-- GSAP core + plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Lenis para smooth scrolling -->
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
-  <!-- Script principal -->
+  <!-- Script principal del proyecto -->
   <script src="assets/js/main.js"></script>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       MATCH CENTER · Consumo API-Football (api-sports.io)
+       ────────────────────────────────────────────────────────────────
+       Endpoint: https://v3.football.api-sports.io/fixtures?team=85&next=3
+       Team ID 85 = Paris Saint-Germain
+       Docs: https://www.api-football.com/documentation-v3
+  ═════════════════════════════════════════════════════════════════ -->
+  <script>
+    /* ⚠️ Pegar aquí la API KEY de api-sports.io
+       Obtenerla gratis en https://dashboard.api-football.com/register */
+    const API_KEY = '';
+
+    const FIXTURES_ENDPOINT = 'https://v3.football.api-sports.io/fixtures?team=85&next=3';
+    const TIMEZONE = 'America/Montevideo';
+
+    /* Estados de partido considerados "EN VIVO" */
+    const LIVE_STATUSES = ['1H', '2H', 'HT', 'ET', 'P', 'BT', 'LIVE'];
+
+    /**
+     * Formatea la fecha del fixture a la zona horaria de Montevideo
+     * @param {string} isoDate - fecha ISO 8601 entregada por la API
+     * @returns {{ date: string, time: string, weekday: string }}
+     */
+    const formatMatchDate = (isoDate) => {
+      const d = new Date(isoDate);
+      const date = new Intl.DateTimeFormat('es-UY', {
+        timeZone: TIMEZONE,
+        day:   '2-digit',
+        month: 'short',
+      }).format(d).toUpperCase().replace('.', '');
+
+      const time = new Intl.DateTimeFormat('es-UY', {
+        timeZone: TIMEZONE,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).format(d);
+
+      const weekday = new Intl.DateTimeFormat('es-UY', {
+        timeZone: TIMEZONE,
+        weekday: 'long',
+      }).format(d).toUpperCase();
+
+      return { date, time, weekday };
+    };
+
+    /**
+     * Genera el HTML de una tarjeta de partido (Match Card)
+     * Aplica estilo glassmorphism dark + indicador LIVE animado si corresponde
+     */
+    const renderFixtureCard = (fixture) => {
+      const { fixture: f, league, teams, goals } = fixture;
+      const { date, time, weekday } = formatMatchDate(f.date);
+      const isLive = LIVE_STATUSES.includes(f.status.short);
+      const isFinished = f.status.short === 'FT';
+
+      /* Badge de estado: LIVE / FECHA / FINALIZADO */
+      const statusBadge = isLive
+        ? `<div class="flex items-center gap-2 px-3 py-1.5 bg-psg-red rounded-sm">
+             <span class="relative flex h-2 w-2">
+               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+               <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+             </span>
+             <span class="text-white text-[10px] tracking-[0.3em] uppercase font-bold">Live · ${f.status.elapsed || ''}'</span>
+           </div>`
+        : `<div class="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-sm">
+             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-white/60"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+             <span class="text-white/70 text-[10px] tracking-[0.3em] uppercase font-bold">${weekday} · ${time}</span>
+           </div>`;
+
+      /* Marcador o vs */
+      const scoreBlock = (isLive || isFinished)
+        ? `<div class="font-headline text-3xl lg:text-4xl tracking-psg text-white">${goals.home ?? 0} <span class="text-white/30">·</span> ${goals.away ?? 0}</div>`
+        : `<div class="font-headline text-2xl lg:text-3xl tracking-psg text-white/40">VS</div>`;
+
+      return `
+        <article class="fixture-card glass-card group relative p-6 lg:p-7 overflow-hidden">
+          <!-- Brillo de hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-psg-red/0 via-transparent to-psg-red/0 group-hover:from-psg-red/10 group-hover:to-psg-red/5 transition-all duration-500 pointer-events-none"></div>
+
+          <!-- Liga + estado -->
+          <div class="relative flex items-center justify-between mb-6">
+            <div class="flex items-center gap-2.5">
+              <img src="${league.logo}" alt="${league.name}" class="w-5 h-5 object-contain" loading="lazy" />
+              <span class="text-white/50 text-[10px] tracking-[0.25em] uppercase font-semibold truncate max-w-[120px]">${league.name}</span>
+            </div>
+            ${statusBadge}
+          </div>
+
+          <!-- Equipos -->
+          <div class="relative flex items-center justify-between gap-3">
+            <!-- Local -->
+            <div class="flex-1 flex flex-col items-center text-center">
+              <div class="w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center mb-3 bg-white/5 backdrop-blur-md border border-white/10 p-2">
+                <img src="${teams.home.logo}" alt="${teams.home.name}" class="max-w-full max-h-full object-contain" loading="lazy" />
+              </div>
+              <span class="text-white text-xs font-semibold uppercase tracking-wider truncate max-w-[100px]">${teams.home.name}</span>
+            </div>
+
+            <!-- Centro: VS / marcador -->
+            <div class="flex flex-col items-center justify-center px-2">
+              ${scoreBlock}
+              <span class="text-white/30 text-[9px] tracking-[0.3em] uppercase mt-1">${date}</span>
+            </div>
+
+            <!-- Visitante -->
+            <div class="flex-1 flex flex-col items-center text-center">
+              <div class="w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center mb-3 bg-white/5 backdrop-blur-md border border-white/10 p-2">
+                <img src="${teams.away.logo}" alt="${teams.away.name}" class="max-w-full max-h-full object-contain" loading="lazy" />
+              </div>
+              <span class="text-white text-xs font-semibold uppercase tracking-wider truncate max-w-[100px]">${teams.away.name}</span>
+            </div>
+          </div>
+
+          <!-- Estadio -->
+          <div class="relative mt-6 pt-5 border-t border-white/10 flex items-center gap-2 text-white/40 text-xs">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="truncate">${f.venue.name || 'Por confirmar'}${f.venue.city ? ' · ' + f.venue.city : ''}</span>
+          </div>
+        </article>
+      `;
+    };
+
+    /**
+     * Renderiza un estado de error/fallback estético cuando no se puede consumir la API
+     */
+    const renderFallbackState = (container, message) => {
+      container.innerHTML = `
+        <div class="md:col-span-3 glass-card p-10 lg:p-12 text-center">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-psg-red/15 border border-psg-red/30 mb-5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF3340" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h4 class="font-headline text-xl tracking-psg uppercase text-white mb-3">Match Center temporalmente offline</h4>
+          <p class="text-white/50 text-sm max-w-md mx-auto leading-relaxed">${message}</p>
+          <p class="text-white/30 text-[10px] tracking-[0.3em] uppercase mt-6">Configura la API_KEY en index.html</p>
+        </div>
+      `;
+    };
+
+    /**
+     * Función principal: consume la API y renderiza las tarjetas
+     */
+    const loadFixtures = async () => {
+      const container = document.getElementById('fixtures-container');
+      if (!container) return;
+
+      if (!API_KEY) {
+        renderFallbackState(container, 'Para activar los próximos partidos, registra una cuenta gratuita en api-football.com y pega la API Key en la constante API_KEY del script.');
+        return;
+      }
+
+      try {
+        const response = await fetch(FIXTURES_ENDPOINT, {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-host': 'v3.football.api-sports.io',
+            'x-rapidapi-key':  API_KEY,
+          },
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+
+        if (!data.response || !data.response.length) {
+          renderFallbackState(container, 'No hay partidos próximos programados en este momento.');
+          return;
+        }
+
+        /* Inyectar las tarjetas */
+        container.innerHTML = data.response.slice(0, 3).map(renderFixtureCard).join('');
+
+        /* Animación de entrada con GSAP */
+        if (typeof gsap !== 'undefined') {
+          gsap.from('.fixture-card', {
+            opacity: 0,
+            y: 30,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: 'expo.out',
+          });
+        }
+      } catch (err) {
+        console.error('[Match Center] Error al cargar fixtures:', err);
+        renderFallbackState(container, 'No fue posible obtener los próximos partidos. Verifica la API Key o tu cuota mensual en api-football.com.');
+      }
+    };
+
+    /* Disparar al cargar el DOM */
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadFixtures);
+    } else {
+      loadFixtures();
+    }
+  </script>
 </body>
 </html>
